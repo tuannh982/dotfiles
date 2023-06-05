@@ -1,11 +1,14 @@
+-- helpers
 
-local function set(...)
-    vim.keymap.set(...) 
+local function bind(...)
+    vim.keymap.set(...)
 end
 
-set('n', '<Left>', 'b')
-set('n', '<Right>', 'w')
-set('n', '<leader><Left>', '0')
-set('n', '<leader><Right>', '$')
-set('n', 'w', 'k')
-set('n', 's', 'j')
+-- opts
+vim.opt.expandtab = false
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.smartindent = true
+
+-- key bindings
+bind('n', ';', ':')
