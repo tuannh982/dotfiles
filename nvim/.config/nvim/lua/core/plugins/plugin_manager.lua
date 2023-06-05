@@ -1,7 +1,7 @@
-local utils = require 'utils'
+local utils = require 'core.utils'
 
 PluginManager = {
-    install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim' -- default install path
+    install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim', -- default install path
 }
 
 function PluginManager:new(o)
@@ -11,11 +11,18 @@ function PluginManager:new(o)
     return o
 end
 
-function PluginManager:install(use_function)
-    use_function = use_function or function(use)
+function PluginManager:install(plugins)
+    use_function = function(use)
         -- the manager itself
         use 'wbthomason/packer.nvim'
-        -- empty
+        -- load plugins
+        for index, plugin in ipairs(plugins) do
+            plugin:load(use)
+        end
+        -- configure plugins
+        for index, plugin in ipairs(plugins) do
+            plugin:configure()
+        end
     end
     local is_plugin_manager_already_installed = utils.glob_path_exists(self.install_path)
     if not is_plugin_manager_already_installed then
