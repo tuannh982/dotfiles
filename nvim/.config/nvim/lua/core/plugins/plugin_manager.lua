@@ -1,7 +1,7 @@
 local utils = require 'core.utils'
 
 PluginManager = {
-    install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim', -- default install path
+    install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim' -- default install path
 }
 
 function PluginManager:new(o)

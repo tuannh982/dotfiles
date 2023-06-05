@@ -10,7 +10,7 @@ Plugin = {
 function Plugin:new(o, load, configure)
     o = o or {}
     setmetatable(o, self)
-    self.__index = self 
+    self.__index = self
     return o
 end
 
