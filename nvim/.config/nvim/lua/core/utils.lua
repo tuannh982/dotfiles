@@ -56,6 +56,9 @@ function utils.topo_sort(vertices, edges)
     for _, edge in ipairs(edges) do
         local from = edge[1]
         local to = edge[2]
+        if vertices[from] == nil or vertices[to] == nil then
+            error('node is not exists on vertices set')
+        end
         if graph[from] == nil then graph[from] = { to } else table.insert(graph[from], to) end
         if in_deg[to] == nil then in_deg[to] = 1 else in_deg[to] = in_deg[to] + 1 end
     end
