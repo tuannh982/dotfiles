@@ -3,6 +3,11 @@ require 'core.plugins.plugin'
 
 local manager = PluginManager:new {}
 manager:install({
-    require 'plugins.telescope',
-    require 'plugins.lsp'
+    require('plugins.telescope'):dependsOn({
+        require 'plugins.autocomplete'
+    }),
+    require('plugins.lsp'):dependsOn({
+        require 'plugins.autocomplete'
+    }),
+    require 'plugins.autocomplete',
 })

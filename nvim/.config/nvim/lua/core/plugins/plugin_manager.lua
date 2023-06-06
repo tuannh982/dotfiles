@@ -11,16 +11,28 @@ function PluginManager:new(o)
     return o
 end
 
+local function to_edges_list(...)
+    local edges = {}
+    for _, mod in ipairs(...) do
+        for _, dependency in ipairs(mod.depends_on) do
+            table.insert(edges, { dependency, mod })
+        end
+    end
+    return edges
+end
+
 function PluginManager:install(plugins)
-    use_function = function(use)
+    local use_function = function(use)
         -- the manager itself
         use 'wbthomason/packer.nvim'
+        -- perform topo sort
+        local sorted_plugins = utils.topo_sort(to_edges_list(plugins))
         -- load plugins
-        for index, plugin in ipairs(plugins) do
+        for _, plugin in ipairs(sorted_plugins) do
             plugin:load(use)
         end
         -- configure plugins
-        for index, plugin in ipairs(plugins) do
+        for _, plugin in ipairs(sorted_plugins) do
             plugin:configure()
         end
     end
