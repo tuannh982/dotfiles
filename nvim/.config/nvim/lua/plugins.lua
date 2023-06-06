@@ -10,4 +10,5 @@ manager:install({
         require 'plugins.autocomplete'
     }),
     require 'plugins.autocomplete',
+    require 'plugins.filetree'
 })

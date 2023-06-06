@@ -50,7 +50,7 @@ end
 
 -- sorts
 
-function utils.topo_sort(edges)
+function utils.topo_sort(vertices, edges)
     local graph = {}
     local in_deg = {}
     for _, edge in ipairs(edges) do
@@ -60,7 +60,7 @@ function utils.topo_sort(edges)
         if in_deg[to] == nil then in_deg[to] = 1 else in_deg[to] = in_deg[to] + 1 end
     end
     local stack = {}
-    for node, _ in pairs(graph) do
+    for node, _ in pairs(vertices) do
         if in_deg[node] == nil then
             table.insert(stack, node)
         end

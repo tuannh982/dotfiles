@@ -7,7 +7,18 @@ local function configure()
     require("neodev").setup {}
     require('lspconfig')[language_server].setup {
         on_attach = common.on_attach(),
-        flags = common.flags()
+        flags = common.flags(),
+        settings = {
+            Lua = {
+                workspace = {
+                    library = vim.api.nvim_get_runtime_file("", true),
+                    checkThirdParty = false
+                },
+                telemetry = {
+                    enable = false,
+                },
+            }
+        }
     }
 end
 

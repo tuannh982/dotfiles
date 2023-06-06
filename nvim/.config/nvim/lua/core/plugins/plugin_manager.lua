@@ -21,12 +21,20 @@ local function to_edges_list(...)
     return edges
 end
 
+local function to_set(...)
+    local set = {}
+    for _, mod in ipairs(...) do
+        set[mod] = true
+    end
+    return set
+end
+
 function PluginManager:install(plugins)
     local use_function = function(use)
         -- the manager itself
         use 'wbthomason/packer.nvim'
         -- perform topo sort
-        local sorted_plugins = utils.topo_sort(to_edges_list(plugins))
+        local sorted_plugins = utils.topo_sort(to_set(plugins), to_edges_list(plugins))
         -- load plugins
         for _, plugin in ipairs(sorted_plugins) do
             plugin:load(use)
