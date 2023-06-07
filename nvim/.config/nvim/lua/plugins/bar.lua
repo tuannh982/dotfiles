@@ -1,4 +1,5 @@
 require 'core.plugins.plugin'
+local utils = require 'core.utils'
 
 local function load_fn(use)
     vim.g.barbar_auto_setup = false
@@ -15,10 +16,13 @@ local function configure_fn()
     local opts = { noremap = true, silent = true }
     vim.keymap.set('n', '<A-Left>', '<Cmd>BufferPrevious<CR>', opts)
     vim.keymap.set('n', '<A-Right>', '<Cmd>BufferNext<CR>', opts)
-    -- vim.keymap.set('n', '<A-w>', '<Cmd>BufferClose<CR>', opts)
-    -- vim.keymap.set('n', '<A-W>', '<Cmd>BufferCloseAllButCurrentOrPinned<CR>', opts)
-    -- vim.keymap.set('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
-    -- vim.keymap.set('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+    if utils.is_macos then
+        vim.keymap.set('n', '∑', '<Cmd>BufferClose<CR>', opts)
+        vim.keymap.set('n', '„', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
+    else
+        vim.keymap.set('n', '<A-w>', '<Cmd>BufferClose<CR>', opts)
+        vim.keymap.set('n', '<A-W>', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
+    end
 end
 
 return Plugin:new {

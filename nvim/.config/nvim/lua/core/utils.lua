@@ -96,4 +96,11 @@ function utils.topo_sort(vertices, edges)
     return result
 end
 
+-- miscs
+
+function utils.is_macos()
+    local os_name = vim.loop.os_uname().sysname
+    return string.lower(os_name) == 'darwin'
+end
+
 return utils

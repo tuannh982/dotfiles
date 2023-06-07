@@ -16,6 +16,7 @@ end
 
 local function configure_fn()
     utils.check_command_exists('rg')
+    utils.check_command_exists('fd')
     local telescope = require 'telescope'
     telescope.setup {
         defaults = {
@@ -47,7 +48,12 @@ local function configure_fn()
 
     -- bindings
     local telescope_builtin = require 'telescope.builtin'
-    vim.keymap.set('n', '<leader>f', telescope_builtin.find_files)
+    vim.keymap.set('n', '<leader>f', function()
+        telescope_builtin.find_files {
+            find_command = { 'fd', '--type=f', '--color=never', '--hidden', '--exclude', '.git' }
+        }
+    end)
+
     vim.keymap.set('n', '<leader>g', telescope_builtin.live_grep)
 end
 

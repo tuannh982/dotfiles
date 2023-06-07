@@ -4,6 +4,7 @@ brew install git-lfs
 brew install pre-commit
 brew install stow
 brew install ripgrep
+brew install fd
 brew tap homebrew/cask-fonts
 brew install --cask font-space-mono-nerd-font
 brew install --cask font-jetbrains-mono-nerd-font
