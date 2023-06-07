@@ -13,3 +13,5 @@ vim.opt.encoding = 'utf-8'
 
 -- key bindings
 bind('n', ';', ':')
+bind('v', '<', '<gv')
+bind('v', '>', '>gv')

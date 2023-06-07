@@ -2,6 +2,7 @@ require 'core.plugins.plugin'
 local s = require('core.utils').switch
 
 local function load_fn(use)
+    -- auto complete
     use({
         'hrsh7th/nvim-cmp',
         requires = {
@@ -10,9 +11,12 @@ local function load_fn(use)
             { 'hrsh7th/vim-vsnip' },
         },
     })
+    -- auto pairs
+    use 'windwp/nvim-autopairs'
 end
 
 local function configure_fn()
+    require 'nvim-autopairs'.setup {}
     local cmp = require('cmp')
     cmp.setup({
         snippet = {

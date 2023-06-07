@@ -12,7 +12,7 @@ local function load_fn(use)
     use 'folke/neodev.nvim'
     use 'neovim/nvim-lspconfig'
     use 'williamboman/mason.nvim'
-    use 'williamboman/mason-lspconfig.nvim'
+    use 'williamboman/mason-lspconfig.nvim'    
     -- scala
     use {
         'scalameta/nvim-metals',

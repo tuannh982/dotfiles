@@ -17,7 +17,6 @@ end
 local function configure_fn()
     utils.check_command_exists('rg')
     local telescope = require 'telescope'
-    telescope.load_extension('fzf')
     telescope.setup {
         defaults = {
             vimgrep_arguments = {
@@ -43,12 +42,13 @@ local function configure_fn()
             },
         }
     }
+    telescope.load_extension('fzf')
     -- settings
 
     -- bindings
     local telescope_builtin = require 'telescope.builtin'
-    vim.keymap.set('n', '<leader>o', telescope_builtin.find_files)
-    vim.keymap.set('n', '<leader>F', telescope_builtin.live_grep)
+    vim.keymap.set('n', '<leader>f', telescope_builtin.find_files)
+    vim.keymap.set('n', '<leader>g', telescope_builtin.live_grep)
 end
 
 return Plugin:new {
