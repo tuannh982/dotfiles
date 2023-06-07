@@ -3,6 +3,8 @@ require 'plugins'
 require 'vimopts'
 require 'postload'
 
+
+-- live reload command
 local user_module_patterns = {
     '^preload$',
     '^postload$',
@@ -12,8 +14,7 @@ local user_module_patterns = {
     '^core.'
 }
 
--- reload
-function _G.reload_user_modules()
+local function reload_user_modules(args)
     for name, _ in pairs(package.loaded) do
         for _, pattern in ipairs(user_module_patterns) do
             if name:match(pattern) then
@@ -23,3 +24,5 @@ function _G.reload_user_modules()
     end
     vim.api.nvim_command 'luafile ~/.config/nvim/init.lua'
 end
+
+vim.api.nvim_create_user_command('ReloadUserModules', reload_user_modules, { nargs = '?' })
